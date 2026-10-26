@@ -7,10 +7,9 @@
   <meta name="description" content="Elias Cleaving - المنظومة الهندسية المتكاملة لحصر الكميات، تفريد حديد التسليح BBS، نسب الخلطات وتكاليف المشروعات الإنشائية." />
   <meta name="theme-color" content="#0F172A" />
 
-  <!-- PWA Manifest & Custom App Icon -->
+  <!-- PWA Manifest -->
   <link rel="manifest" href="./manifest.json" />
-  <link rel="apple-touch-icon" href="./icon.jpg" />
-  <link rel="icon" type="image/jpeg" href="./icon.jpg" />
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='110' fill='%230F172A'/%3E%3Cpolygon points='256,120 380,192 380,336 256,408 132,336 132,192' fill='%231E293B' stroke='%23F59E0B' stroke-width='22'/%3E%3Cline x1='256' y1='120' x2='256' y2='408' stroke='%23F59E0B' stroke-width='14'/%3E%3Ccircle cx='256' cy='264' r='24' fill='%2338BDF8'/%3E%3C/svg%3E" />
 
   <!-- Google Fonts: Cairo & Outfit -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -90,7 +89,9 @@
   <header class="sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 px-4 py-3 shadow-lg">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <img src="./icon.jpg" alt="Logo" class="w-10 h-10 rounded-xl object-cover shadow-md shadow-amber-500/20 border border-amber-500/30" />
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center shadow-md shadow-amber-500/20 text-slate-950 font-black text-xl">
+          EC
+        </div>
         <div>
           <div class="flex items-center gap-2">
             <h1 class="text-lg font-black tracking-tight text-white flex items-center gap-1.5">
@@ -113,7 +114,8 @@
     </div>
 
     <div class="max-w-7xl mx-auto mt-3 overflow-x-auto no-print">
-      <div class="flex items-center gap-1.5 min-w-max pb-1 text-xs font-semibold" id="navTabs"></div>
+      <div class="flex items-center gap-1.5 min-w-max pb-1 text-xs font-semibold" id="navTabs">
+      </div>
     </div>
   </header>
 
@@ -135,17 +137,27 @@
 
       <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl">
         <form id="calculatorForm" onsubmit="event.preventDefault(); calculateCurrentModule();" class="space-y-4">
-          <div id="formFieldsContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+          <div id="formFieldsContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          </div>
+
           <div class="pt-3 border-t border-slate-800 flex items-center justify-between">
-            <button type="button" onclick="resetCurrentForm()" class="text-xs text-slate-400 hover:text-slate-200 transition">إعادة ضبط الحقول ↺</button>
-            <button type="submit" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black text-sm shadow-lg shadow-amber-500/25 transition">تحديث وحساب الكميات ✓</button>
+            <button type="button" onclick="resetCurrentForm()" class="text-xs text-slate-400 hover:text-slate-200 transition">
+              إعادة ضبط الحقول ↺
+            </button>
+            <button type="submit" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black text-sm shadow-lg shadow-amber-500/25 transition">
+              تحديث وحساب الكميات ✓
+            </button>
           </div>
         </form>
       </div>
 
       <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-4 text-xs text-slate-400 space-y-2">
-        <div class="flex items-center gap-1.5 font-bold text-slate-300"><span>📐 المعادلة المعتمدة في هذا القسم:</span></div>
-        <div id="formulaExplanation" class="font-mono bg-slate-950/70 p-2.5 rounded-xl border border-slate-800 text-amber-300">الحجم = الطول × العرض × السماكة × العدد</div>
+        <div class="flex items-center gap-1.5 font-bold text-slate-300">
+          <span>📐 المعادلة المعتمدة في هذا القسم:</span>
+        </div>
+        <div id="formulaExplanation" class="font-mono bg-slate-950/70 p-2.5 rounded-xl border border-slate-800 text-amber-300">
+          الحجم = الطول × العرض × السماكة × العدد
+        </div>
       </div>
     </div>
 
@@ -155,27 +167,39 @@
           <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">النتيجة الهندسية الرئيسية</span>
           <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">دقيق ومطابق للكود</span>
         </div>
+
         <div class="my-4 text-center">
           <div class="text-xs text-slate-400 mb-1" id="primaryResultLabel">إجمالي حجم الخرسانة المسلحة</div>
           <div class="text-4xl font-black text-amber-400 mono-num" id="primaryResultValue">0.00</div>
           <div class="text-xs font-semibold text-slate-300 mt-1" id="primaryResultUnit">متر مكعب (م³)</div>
         </div>
-        <div class="grid grid-cols-2 gap-2 pt-3 border-t border-slate-800/80 text-center" id="secondaryResultsGrid"></div>
+
+        <div class="grid grid-cols-2 gap-2 pt-3 border-t border-slate-800/80 text-center" id="secondaryResultsGrid">
+        </div>
       </div>
 
       <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl">
-        <h3 class="text-sm font-bold text-slate-200 mb-3 flex items-center gap-2"><span>📦 تفكيك المواد الأولية والمشتريات</span></h3>
-        <div class="space-y-2.5" id="materialsListContainer"></div>
+        <h3 class="text-sm font-bold text-slate-200 mb-3 flex items-center gap-2">
+          <span>📦 تفكيك المواد الأولية والمشتريات</span>
+        </h3>
+        <div class="space-y-2.5" id="materialsListContainer">
+        </div>
       </div>
 
       <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl">
         <div class="flex items-center justify-between mb-3">
-          <h3 class="text-sm font-bold text-slate-200 flex items-center gap-2"><span>📊 ملخص التكلفة التقديرية</span></h3>
+          <h3 class="text-sm font-bold text-slate-200 flex items-center gap-2">
+            <span>📊 ملخص التكلفة التقديرية</span>
+          </h3>
           <span class="text-xs text-amber-400 font-mono font-bold" id="totalEstimatedCostLabel">0.00 ر.س</span>
         </div>
-        <p class="text-[11px] text-slate-400 mb-3">يتم حفظ كافة المدخلات والنتائج تلقائياً في ذاكرة الهاتف المحلية (Offline Storage).</p>
+        <p class="text-[11px] text-slate-400 mb-3">
+          يتم حفظ كافة المدخلات والنتائج تلقائياً في ذاكرة الهاتف المحلية (Offline Storage).
+        </p>
         <div class="flex gap-2">
-          <button onclick="switchTab('boq')" class="flex-1 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-bold text-slate-200 transition text-center border border-slate-700">فتح جدول الكميات الكامل (BOQ) ➔</button>
+          <button onclick="switchTab('boq')" class="flex-1 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-bold text-slate-200 transition text-center border border-slate-700">
+            فتح جدول الكميات الكامل (BOQ) ➔
+          </button>
         </div>
       </div>
     </div>
@@ -189,7 +213,10 @@
   <script>
     const MODULES = [
       {
-        id: 'foundations', nameAr: 'الأساسات والقواعد', nameEn: 'Foundations', icon: '🏛️',
+        id: 'foundations',
+        nameAr: 'الأساسات والقواعد',
+        nameEn: 'Foundations',
+        icon: '🏛️',
         desc: 'حصر خرسانة القواعد المنفصلة والمشتركة، الحصيرة (Raft)، والأساسات الشريطية مع تفكيك الأسمنت والرمل والحصى وحديد التسليح.',
         formula: 'حجم الخرسانة = الطول × العرض × السماكة × العدد | حديد التسليح = الحجم × نسبة التسليح (كجم/م³)',
         fields: [
@@ -203,7 +230,10 @@
         ]
       },
       {
-        id: 'earthworks', nameAr: 'الحفر والردم', nameEn: 'Earthworks', icon: '🚜',
+        id: 'earthworks',
+        nameAr: 'الحفر والردم',
+        nameEn: 'Earthworks',
+        icon: '🚜',
         desc: 'حساب حجوم الحفر للأرض كاملة أو القواعد، معامل انتفاش التربة (Swell Factor)، ردود الشاحنات المطلوبة، وكميات الردم بعد خصم القواعد.',
         formula: 'حجم الحفر = مساحة الحفر × العمق | الحجم بعد الانتفاش = الحجم × 1.25 | عدد الشاحنات = الحجم المنتفش ÷ سعة الشاحنة',
         fields: [
@@ -216,7 +246,10 @@
         ]
       },
       {
-        id: 'columns', nameAr: 'الأعمدة ورقاب الأعمدة', nameEn: 'Columns & Necks', icon: '🏛️',
+        id: 'columns',
+        nameAr: 'الأعمدة ورقاب الأعمدة',
+        nameEn: 'Columns & Necks',
+        icon: '🏛️',
         desc: 'حساب خرسانة رقاب الأعمدة وأعمدة الطوابق، مسطح الشدات الخشبية، وأوزان أسياخ الحديد الرأسي والكانات الأوتوماتيكية.',
         formula: 'الحجم = العرض × العمق × الارتفاع × العدد | مسطح الشدة = المحيط × الارتفاع × العدد',
         fields: [
@@ -229,7 +262,10 @@
         ]
       },
       {
-        id: 'slabs', nameAr: 'الأسقف والكمرات', nameEn: 'Slabs & Beams', icon: '📐',
+        id: 'slabs',
+        nameAr: 'الأسقف والكمرات',
+        nameEn: 'Slabs & Beams',
+        icon: '📐',
         desc: 'حساب بلاطات الأسقف (Solid Slabs, Flat Slabs, Hollow Block)، كمرات السواقط والمدفونة، وبلوكات الهوردي الفلين أو الأسمنتي.',
         formula: 'حجم البلاطة = المسطح × السماكة + حجم الجسور الساقطة | حديد السقف الفلات = 120-140 كجم/م³',
         fields: [
@@ -241,7 +277,10 @@
         ]
       },
       {
-        id: 'bbs', nameAr: 'تفريد الحديد BBS', nameEn: 'Bar Bending Schedule', icon: '⚙️',
+        id: 'bbs',
+        nameAr: 'تفريد الحديد BBS',
+        nameEn: 'Bar Bending Schedule',
+        icon: '⚙️',
         desc: 'الحساب الدقيق لوزن أسياخ التسليح حسب القطر باستخدام معادلة الكود العالمي: الوزن (كجم/م) = D² ÷ 162.2 مع الكانات والهالك.',
         formula: 'وزن المتر الطولي = (القطر بالمليمتر)² ÷ 162.198 | الوزن الإجمالي = الطول × العدد × وزن المتر الطولي × (1 + نسبة الهالك)',
         fields: [
@@ -253,7 +292,10 @@
         ]
       },
       {
-        id: 'masonry', nameAr: 'أعمال المباني والبلوك', nameEn: 'Masonry Works', icon: '🧱',
+        id: 'masonry',
+        nameAr: 'أعمال المباني والبلوك',
+        nameEn: 'Masonry Works',
+        icon: '🧱',
         desc: 'حصر كميات البلوك الأسمنتي أو البركاني أو العازل، عدد البلوكات في المتر المسطح، وأكياس أسمنت المونة والرمل.',
         formula: 'المتر المربع يحتاج 12.5 بلوكة بمقاس (20×40 سم) | الألف بلوكة تستهلك حوالي 1.5 م³ مونة (10 أكياس أسمنت)',
         fields: [
@@ -263,7 +305,10 @@
         ]
       },
       {
-        id: 'plaster', nameAr: 'اللياسة والتشطيبات', nameEn: 'Plaster & Finishes', icon: '🎨',
+        id: 'plaster',
+        nameAr: 'اللياسة والتشطيبات',
+        nameEn: 'Plaster & Finishes',
+        icon: '🎨',
         desc: 'حصر أعمال اللياسة (طرطشة وبياض)، دهانات الجدران والأسقف 3 أوجه، وسيراميك وبورسلان الأرضيات مع وزنة المونة والغراء.',
         formula: 'لياسة سماكة 2 سم: 100 م² تحتاج 2 م³ رمل + 16 كيس أسمنت | وجهين دهان: الجالون (18 لتر) يفرد 70-80 م²',
         fields: [
@@ -274,7 +319,10 @@
         ]
       },
       {
-        id: 'formwork', nameAr: 'النجارة المسلحة والشدات', nameEn: 'Formwork & Shuttering', icon: '🪵',
+        id: 'formwork',
+        nameAr: 'النجارة المسلحة والشدات',
+        nameEn: 'Formwork & Shuttering',
+        icon: '🪵',
         desc: 'حساب مسطحات الشدة الخشبية والمعدنية الملامسة للخرسانة لحساب مصنعيات النجارين وتوريد خشب البلايوود والمراين.',
         formula: 'مساحة الشدة للقواعد = محيط القواعد × الارتفاع | الأسقف = مساحة البلاطة + جوانب الجسور الساقطة',
         fields: [
@@ -284,7 +332,10 @@
         ]
       },
       {
-        id: 'boq', nameAr: 'جدول الكميات والتكلفة BOQ', nameEn: 'Bill of Quantities', icon: '📊',
+        id: 'boq',
+        nameAr: 'جدول الكميات والتكلفة BOQ',
+        nameEn: 'Bill of Quantities',
+        icon: '📊',
         desc: 'تجميع إجمالي كميات المشروع، بنود الخرسانات، حديد التسليح، التشطيبات، وحساب التكلفة الإجمالية المباشرة مع الضرائب.',
         formula: 'إجمالي تكلفة المشروع = مجموع (الكمية × سعر الوحدة) لكل بند + ضريبة القيمة المضافة 15%',
         fields: [
@@ -300,26 +351,44 @@
     function initStore() {
       try {
         const saved = localStorage.getItem('elias_cleaving_data');
-        if (saved) moduleDataStore = JSON.parse(saved);
-      } catch (e) {}
+        if (saved) {
+          moduleDataStore = JSON.parse(saved);
+        }
+      } catch (e) {
+        console.warn('Storage read warning', e);
+      }
+
       MODULES.forEach(mod => {
         if (!moduleDataStore[mod.id]) {
           moduleDataStore[mod.id] = {};
-          mod.fields.forEach(f => { moduleDataStore[mod.id][f.id] = f.val; });
+          mod.fields.forEach(f => {
+            moduleDataStore[mod.id][f.id] = f.val;
+          });
         }
       });
     }
 
     function saveStore() {
-      try { localStorage.setItem('elias_cleaving_data', JSON.stringify(moduleDataStore)); } catch (e) {}
+      try {
+        localStorage.setItem('elias_cleaving_data', JSON.stringify(moduleDataStore));
+      } catch (e) {
+        console.warn('Storage write warning', e);
+      }
     }
 
     function renderTabs() {
       const nav = document.getElementById('navTabs');
       nav.innerHTML = MODULES.map(mod => {
         const isActive = mod.id === currentModuleId;
-        const activeClasses = isActive ? 'bg-amber-500 text-slate-950 shadow-md shadow-amber-500/25 border-amber-400 font-black' : 'bg-slate-850 hover:bg-slate-800 text-slate-300 border-slate-800';
-        return `<button onclick="switchTab('${mod.id}')" class="px-3.5 py-2 rounded-xl border transition flex items-center gap-1.5 whitespace-nowrap ${activeClasses}"><span>${mod.icon}</span><span>${mod.nameAr}</span></button>`;
+        const activeClasses = isActive
+          ? 'bg-amber-500 text-slate-950 shadow-md shadow-amber-500/25 border-amber-400 font-black'
+          : 'bg-slate-850 hover:bg-slate-800 text-slate-300 border-slate-800';
+        return `
+          <button onclick="switchTab('${mod.id}')" class="px-3.5 py-2 rounded-xl border transition flex items-center gap-1.5 whitespace-nowrap ${activeClasses}">
+            <span>${mod.icon}</span>
+            <span>${mod.nameAr}</span>
+          </button>
+        `;
       }).join('');
     }
 
@@ -334,6 +403,7 @@
     function renderModuleForm() {
       const mod = MODULES.find(m => m.id === currentModuleId);
       if (!mod) return;
+
       document.getElementById('moduleTitle').textContent = mod.nameAr;
       document.getElementById('moduleSubtitle').textContent = mod.nameEn;
       document.getElementById('moduleIcon').textContent = mod.icon;
@@ -346,9 +416,21 @@
       container.innerHTML = mod.fields.map(f => {
         const val = curData[f.id] !== undefined ? curData[f.id] : f.val;
         if (f.type === 'select') {
-          return `<div class="space-y-1.5"><label class="block text-xs font-semibold text-slate-300">${f.label}</label><select name="${f.id}" onchange="onFieldChange('${f.id}', this.value)" class="w-full bg-slate-950 border border-slate-700/80 rounded-xl px-3 py-2 text-sm text-amber-300 font-mono focus:outline-none focus:border-amber-500">${f.options.map(opt => `<option value="${opt}" ${Number(opt) === Number(val) ? 'selected' : ''}>${opt} مم</option>`).join('')}</select></div>`;
+          return `
+            <div class="space-y-1.5">
+              <label class="block text-xs font-semibold text-slate-300">${f.label}</label>
+              <select name="${f.id}" onchange="onFieldChange('${f.id}', this.value)" class="w-full bg-slate-950 border border-slate-700/80 rounded-xl px-3 py-2 text-sm text-amber-300 font-mono focus:outline-none focus:border-amber-500">
+                ${f.options.map(opt => `<option value="${opt}" ${Number(opt) === Number(val) ? 'selected' : ''}>${opt} مم</option>`).join('')}
+              </select>
+            </div>
+          `;
         }
-        return `<div class="space-y-1.5"><label class="block text-xs font-semibold text-slate-300">${f.label}</label><input type="number" step="${f.step || 'any'}" name="${f.id}" value="${val}" oninput="onFieldChange('${f.id}', this.value)" class="w-full bg-slate-950 border border-slate-700/80 rounded-xl px-3 py-2 text-sm text-amber-300 font-mono focus:outline-none focus:border-amber-500" required /></div>`;
+        return `
+          <div class="space-y-1.5">
+            <label class="block text-xs font-semibold text-slate-300">${f.label}</label>
+            <input type="number" step="${f.step || 'any'}" name="${f.id}" value="${val}" oninput="onFieldChange('${f.id}', this.value)" class="w-full bg-slate-950 border border-slate-700/80 rounded-xl px-3 py-2 text-sm text-amber-300 font-mono focus:outline-none focus:border-amber-500" required />
+          </div>
+        `;
       }).join('');
     }
 
@@ -362,7 +444,9 @@
     function resetCurrentForm() {
       const mod = MODULES.find(m => m.id === currentModuleId);
       if (mod) {
-        mod.fields.forEach(f => { moduleDataStore[mod.id][f.id] = f.val; });
+        mod.fields.forEach(f => {
+          moduleDataStore[mod.id][f.id] = f.val;
+        });
         saveStore();
         renderModuleForm();
         calculateCurrentModule();
@@ -372,17 +456,27 @@
     function calculateCurrentModule() {
       const modId = currentModuleId;
       const d = moduleDataStore[modId] || {};
+
       let primary = { label: '', val: '0.00', unit: '' };
       let secondaries = [];
       let materials = [];
       let estimatedCost = 0;
 
       if (modId === 'foundations') {
-        const count = Number(d.count) || 0, l = Number(d.length) || 0, w = Number(d.width) || 0, t = Number(d.depth) || 0;
+        const count = Number(d.count) || 0;
+        const l = Number(d.length) || 0;
+        const w = Number(d.width) || 0;
+        const t = Number(d.depth) || 0;
         const vol = count * l * w * t;
-        const steelRatio = Number(d.steelRatio) || 90, totalSteelKg = vol * steelRatio, totalSteelTons = totalSteelKg / 1000;
-        const cementFactor = Number(d.cementFactor) || 7, cementBags = Math.ceil(vol * cementFactor), cementTons = (cementBags * 50) / 1000;
-        const sandM3 = vol * 0.43, gravelM3 = vol * 0.86, waterLiters = cementBags * 25;
+        const steelRatio = Number(d.steelRatio) || 90;
+        const totalSteelKg = vol * steelRatio;
+        const totalSteelTons = totalSteelKg / 1000;
+        const cementFactor = Number(d.cementFactor) || 7;
+        const cementBags = Math.ceil(vol * cementFactor);
+        const cementTons = (cementBags * 50) / 1000;
+        const sandM3 = vol * 0.43;
+        const gravelM3 = vol * 0.86;
+        const waterLiters = cementBags * 25;
         const unitRate = Number(d.unitRate) || 260;
         estimatedCost = vol * unitRate + (totalSteelTons * 2850);
 
@@ -395,17 +489,25 @@
         ];
         materials = [
           { name: 'خرسانة جاهزة أو خلط موقعي', qty: `${vol.toFixed(2)} م³`, note: 'جهد 350 كجم/سم² مقاوم للكبريتات SRC' },
-          { name: 'حديد تسليح عالي المقاومة', qty: `${totalSteelTons.toFixed(2)} طن`, note: 'أسياخ فرش وغطاء مع أشاير الأعمدة' },
-          { name: 'أسمنت بورتلاندي مقاوم (أكياس)', qty: `${cementBags} كيس`, note: `${cementFactor} أكياس/م³` },
+          { name: 'حديد تسليح عالي المقاومة (Grade 60)', qty: `${totalSteelTons.toFixed(2)} طن`, note: 'أسياخ فرش وغطاء مع أشاير الأعمدة' },
+          { name: 'أسمنت بورتلاندي مقاوم (أكياس 50كجم)', qty: `${cementBags} كيس`, note: `${cementFactor} أكياس/م³` },
           { name: 'رمل نظيف للخرسانة', qty: `${sandM3.toFixed(2)} م³`, note: 'نسبة 0.43 من حجم الخرسانة' },
           { name: 'حصى متدرج (Gravel)', qty: `${gravelM3.toFixed(2)} م³`, note: 'نسبة 0.86 من حجم الخرسانة' },
           { name: 'مياه الخلط الصالحة للشرب', qty: `${waterLiters.toFixed(0)} لتر`, note: 'معامل ماء/أسمنت W/C = 0.45' }
         ];
-      } else if (modId === 'earthworks') {
-        const l = Number(d.excLength) || 0, w = Number(d.excWidth) || 0, dep = Number(d.excDepth) || 0;
-        const rawVol = l * w * dep, swell = Number(d.swellFactor) || 1.25, swellVol = rawVol * swell;
-        const truckCap = Number(d.truckCap) || 16, trucksCount = Math.ceil(swellVol / truckCap), rate = Number(d.excRate) || 18;
+      }
+      else if (modId === 'earthworks') {
+        const l = Number(d.excLength) || 0;
+        const w = Number(d.excWidth) || 0;
+        const dep = Number(d.excDepth) || 0;
+        const rawVol = l * w * dep;
+        const swell = Number(d.swellFactor) || 1.25;
+        const swellVol = rawVol * swell;
+        const truckCap = Number(d.truckCap) || 16;
+        const trucksCount = Math.ceil(swellVol / truckCap);
+        const rate = Number(d.excRate) || 18;
         estimatedCost = rawVol * rate;
+
         primary = { label: 'حجم الحفر الهندسي النظري في الموقع', val: rawVol.toFixed(2), unit: 'متر مكعب (م³)' };
         secondaries = [
           { label: 'الحجم المنتفش أثناء النقل', val: `${swellVol.toFixed(2)} م³`, sub: `معامل انتفاش ${swell}` },
@@ -415,14 +517,22 @@
         ];
         materials = [
           { name: 'نقل مخلفات الحفر للمقلب العمومي', qty: `${trucksCount} شاحنة`, note: 'شاحنات قلاب سعة 16-20 م³' },
-          { name: 'تربة إحلال مقترحة (دفان نظيف)', qty: `${(rawVol * 0.4).toFixed(1)} م³`, note: 'طبقات دمك 25-30 سم مع الرش' }
+          { name: 'تربة إحلال مقترحة (دفان نظيف A-1-a)', qty: `${(rawVol * 0.4).toFixed(1)} م³`, note: 'طبقات دمك 25-30 سم مع الرش' }
         ];
-      } else if (modId === 'columns') {
-        const n = Number(d.colCount) || 0, b = Number(d.colB) || 0, t = Number(d.colT) || 0, h = Number(d.colH) || 0;
-        const vol = n * b * t * h, shutterArea = n * 2 * (b + t) * h;
-        const steelRatio = Number(d.colSteelRatio) || 160, totalSteelKg = vol * steelRatio, totalSteelTons = totalSteelKg / 1000;
+      }
+      else if (modId === 'columns') {
+        const n = Number(d.colCount) || 0;
+        const b = Number(d.colB) || 0;
+        const t = Number(d.colT) || 0;
+        const h = Number(d.colH) || 0;
+        const vol = n * b * t * h;
+        const shutterArea = n * 2 * (b + t) * h;
+        const steelRatio = Number(d.colSteelRatio) || 160;
+        const totalSteelKg = vol * steelRatio;
+        const totalSteelTons = totalSteelKg / 1000;
         const rate = Number(d.colUnitRate) || 320;
         estimatedCost = vol * rate + (totalSteelTons * 2850);
+
         primary = { label: 'إجمالي حجم خرسانة الأعمدة', val: vol.toFixed(2), unit: 'متر مكعب (م³)' };
         secondaries = [
           { label: 'مسطح نجارة الشدات الخشبية', val: `${shutterArea.toFixed(2)} م²`, sub: 'المساحة الجانبية للقوالب' },
@@ -432,15 +542,23 @@
         ];
         materials = [
           { name: 'خرسانة جاهزة مقاومة C35', qty: `${vol.toFixed(2)} م³`, note: 'صب بمضخة خرسانية وهزاز ميكانيكي' },
-          { name: 'حديد تسليح طولي قطر 16 مم', qty: `${(totalSteelTons * 0.75).toFixed(2)} طن`, note: 'أسياخ رأسية مع وصلات التراكب' },
-          { name: 'حديد كانات قطر 8 مم أو 10 مم', qty: `${(totalSteelTons * 0.25).toFixed(2)} طن`, note: 'تكثيف الكانات في الأطراف' },
+          { name: 'حديد تسليح طولي قطر 16 مم', qty: `${(totalSteelTons * 0.75).toFixed(2)} طن`, note: 'أسياخ رأسية مع وصلات التراكب 60Φ' },
+          { name: 'حديد كانات قطر 8 مم أو 10 مم', qty: `${(totalSteelTons * 0.25).toFixed(2)} طن`, note: 'تكثيف الكانات في أول وآخر متر' },
           { name: 'خشب بليود وزراجين للشدة', qty: `${shutterArea.toFixed(1)} م²`, note: 'دهان عازل للقوالب قبل الصب' }
         ];
-      } else if (modId === 'slabs') {
-        const area = Number(d.slabArea) || 0, th = Number(d.slabThickness) || 0, drops = Number(d.dropBeamsVol) || 0;
-        const vol = (area * th) + drops, steelRatio = Number(d.slabSteelRatio) || 115, steelKg = vol * steelRatio, steelTons = steelKg / 1000;
-        const cementBags = Math.ceil(vol * 7), rate = Number(d.slabRate) || 290;
+      }
+      else if (modId === 'slabs') {
+        const area = Number(d.slabArea) || 0;
+        const th = Number(d.slabThickness) || 0;
+        const drops = Number(d.dropBeamsVol) || 0;
+        const vol = (area * th) + drops;
+        const steelRatio = Number(d.slabSteelRatio) || 115;
+        const steelKg = vol * steelRatio;
+        const steelTons = steelKg / 1000;
+        const cementBags = Math.ceil(vol * 7);
+        const rate = Number(d.slabRate) || 290;
         estimatedCost = vol * rate + (steelTons * 2850);
+
         primary = { label: 'حجم خرسانة السقف والجسور الكلي', val: vol.toFixed(2), unit: 'متر مكعب (م³)' };
         secondaries = [
           { label: 'إجمالي حديد تسليح السقف', val: `${steelTons.toFixed(2)} طن`, sub: `معدل ${steelRatio} كجم/م³` },
@@ -449,32 +567,48 @@
           { label: 'رمل ناعم وحصى للسقف', val: `${(vol*0.42).toFixed(1)} / ${(vol*0.84).toFixed(1)} م³`, note: 'رمل / بحص' }
         ];
         materials = [
-          { name: 'خرسانة سقف جاهزة C30 / C35', qty: `${vol.toFixed(2)} م³`, note: 'شاملة البلاطة والكمرات' },
-          { name: 'حديد تسليح شبكة علوية وسفلية', qty: `${steelTons.toFixed(2)} طن`, note: 'أسياخ مقطعة حسب المخطط' },
-          { name: 'بساكيت خرسانية للغطاء', qty: `${Math.ceil(area * 4)} قطعة`, note: 'سماكة 2.5 سم لحماية الحديد' }
+          { name: 'خرسانة سقف جاهزة C30 / C35', qty: `${vol.toFixed(2)} م³`, note: 'شاملة البلاطة والكمرات الساقطة والمدفونة' },
+          { name: 'حديد تسليح شبكة علوية وسفلية', qty: `${steelTons.toFixed(2)} طن`, note: 'أسياخ مقطعة ومثنية حسب المخطط الإنشائي' },
+          { name: 'بساكيت خرسانية للغطاء الخرساني', qty: `${Math.ceil(area * 4)} قطعة`, note: 'سماكة 2.5 سم لحماية شبكة الحديد' }
         ];
-      } else if (modId === 'bbs') {
-        const dia = Number(d.barDia) || 16, len = Number(d.barLength) || 12, count = Number(d.barCount) || 1, waste = Number(d.wastePercent) || 5, tonPrice = Number(d.tonPrice) || 2850;
-        const weightPerMeter = (dia * dia) / 162.198, totalNetWeightKg = count * len * weightPerMeter, wasteKg = totalNetWeightKg * (waste / 100);
-        const totalGrossWeightKg = totalNetWeightKg + wasteKg, totalGrossTons = totalGrossWeightKg / 1000;
+      }
+      else if (modId === 'bbs') {
+        const dia = Number(d.barDia) || 16;
+        const len = Number(d.barLength) || 12;
+        const count = Number(d.barCount) || 1;
+        const waste = Number(d.wastePercent) || 5;
+        const tonPrice = Number(d.tonPrice) || 2850;
+
+        const weightPerMeter = (dia * dia) / 162.198;
+        const totalNetWeightKg = count * len * weightPerMeter;
+        const wasteKg = totalNetWeightKg * (waste / 100);
+        const totalGrossWeightKg = totalNetWeightKg + wasteKg;
+        const totalGrossTons = totalGrossWeightKg / 1000;
         estimatedCost = totalGrossTons * tonPrice;
+
         primary = { label: `إجمالي وزن حديد التسليح (قطر ${dia} مم)`, val: totalGrossTons.toFixed(3), unit: 'طن حديد شامل الهالك' };
         secondaries = [
           { label: 'وزن المتر الطولي للسيخ', val: `${weightPerMeter.toFixed(3)} كجم/م`, sub: `معادلة: ${dia}² ÷ 162.2` },
           { label: 'إجمالي الأطوال المفرودة', val: `${(count * len).toLocaleString()} م`, sub: `${count} سيخ بطول ${len} م` },
           { label: 'وزن الهالك المقصوص المتوقع', val: `${(wasteKg).toFixed(1)} كجم`, sub: `نسبة ${waste}%` },
-          { label: 'عدد أربطة سلك التربيط', val: `${Math.ceil(totalGrossTons * 4)} لفة`, sub: 'سلك رباط مجلفن مقاس 18' }
+          { label: 'عدد أربطة سلك التربيط المطلوبة', val: `${Math.ceil(totalGrossTons * 4)} لفة`, sub: 'سلك رباط مجلفن مقاس 18' }
         ];
         materials = [
-          { name: `أسياخ حديد تسليح ⌀${dia} مم`, qty: `${totalGrossTons.toFixed(3)} طن`, note: 'طول السيخ القياسي 12 متر' },
-          { name: 'سلك تربيط مجلفن ناعم', qty: `${Math.ceil(totalGrossTons * 4)} لفة`, note: 'لفة 5 كجم للتقاطعات' },
-          { name: 'بساكيت حماية', qty: `${Math.ceil(count * 2)} حبة`, note: 'للحفاظ على الغطاء الخرساني' }
+          { name: `أسياخ حديد تسليح مشرشر ⌀${dia} مم`, qty: `${totalGrossTons.toFixed(3)} طن`, note: 'طول السيخ القياسي 12 متر - سابك أو الراجحي' },
+          { name: 'سلك تربيط مجلفن ناعم', qty: `${Math.ceil(totalGrossTons * 4)} لفة`, note: 'لفة 5 كجم لتربيط التقاطعات والكانات' },
+          { name: 'بساكيت حماية بلاستيكية/خرسانية', qty: `${Math.ceil(count * 2)} حبة`, note: 'للحفاظ على الغطاء الخرساني (Cover)' }
         ];
-      } else if (modId === 'masonry') {
-        const area = Number(d.wallArea) || 0, thick = Number(d.blockThickness) || 20, price = Number(d.blockPrice) || 2.8;
-        const totalBlocks = Math.ceil(area * 12.5), mortarM3 = (totalBlocks / 1000) * 1.5;
-        const cementBags = Math.ceil(mortarM3 * 8), sandM3 = mortarM3 * 0.9;
+      }
+      else if (modId === 'masonry') {
+        const area = Number(d.wallArea) || 0;
+        const thick = Number(d.blockThickness) || 20;
+        const price = Number(d.blockPrice) || 2.8;
+        const totalBlocks = Math.ceil(area * 12.5);
+        const mortarM3 = (totalBlocks / 1000) * 1.5;
+        const cementBags = Math.ceil(mortarM3 * 8);
+        const sandM3 = mortarM3 * 0.9;
         estimatedCost = (totalBlocks * price) + (cementBags * 18) + (sandM3 * 45);
+
         primary = { label: 'إجمالي عدد البلوك المطلوب للبناء', val: totalBlocks.toLocaleString(), unit: 'بلوكة (مقاس 20×40 سم)' };
         secondaries = [
           { label: 'أكياس أسمنت المونة للمباني', val: `${cementBags} كيس`, sub: 'أسمنت عادي بورتلاندي' },
@@ -483,63 +617,83 @@
           { label: 'التكلفة التقديرية للمواد', val: `${estimatedCost.toLocaleString()} ر.س`, sub: 'بلوك وأسمنت ورمل' }
         ];
         materials = [
-          { name: `بلوك أسمنتي مقاس (20×40×${thick}) سم`, qty: `${totalBlocks.toLocaleString()} حبة`, note: 'شامل 3% هالك' },
-          { name: 'أسمنت تشييد عادي لمونة الربط', qty: `${cementBags} كيس`, note: 'عيار 300 كجم أسمنت/م³' },
+          { name: `بلوك أسمنتي/بركاني مقاس (20×40×${thick}) سم`, qty: `${totalBlocks.toLocaleString()} حبة`, note: 'شامل 3% نسبة كسر وتشوين' },
+          { name: 'أسمنت تشييد عادي لمونة الربط', qty: `${cementBags} كيس`, note: 'عيار 300 كجم أسمنت للمتر المكعب رمل' },
           { name: 'رمل بناء نظيف ومغربل', qty: `${sandM3.toFixed(2)} م³`, note: 'للخلط الموقعي' }
         ];
-      } else if (modId === 'plaster') {
-        const pArea = Number(d.plasterArea) || 0, fArea = Number(d.flooringArea) || 0;
-        const pRate = Number(d.plasterRate) || 25, fRate = Number(d.flooringRate) || 65;
-        const plasterCementBags = Math.ceil((pArea / 100) * 16), plasterSandM3 = (pArea / 100) * 2.0;
+      }
+      else if (modId === 'plaster') {
+        const pArea = Number(d.plasterArea) || 0;
+        const fArea = Number(d.flooringArea) || 0;
+        const pRate = Number(d.plasterRate) || 25;
+        const fRate = Number(d.flooringRate) || 65;
+        
+        const plasterCementBags = Math.ceil((pArea / 100) * 16);
+        const plasterSandM3 = (pArea / 100) * 2.0;
         estimatedCost = (pArea * pRate) + (fArea * fRate);
+
         primary = { label: 'إجمالي مساحات اللياسة والتشطيبات', val: (pArea + fArea).toLocaleString(), unit: 'متر مربع (م²)' };
         secondaries = [
           { label: 'مسطح اللياسة الجدارية والأسقف', val: `${pArea.toLocaleString()} م²`, sub: 'طرطشة + بياض تخشين' },
           { label: 'مسطح الأرضيات والسيراميك', val: `${fArea.toLocaleString()} م²`, sub: 'بلاط وبورسلان الغرف' },
           { label: 'أسمنت اللياسة المقدر', val: `${plasterCementBags} كيس`, sub: 'أكياس 50 كجم' },
-          { label: 'رمل لياسة ناعم حرش', val: `${plasterSandM3.toFixed(1)} م³`, sub: 'رمل مغسول' }
+          { label: 'رمل لياسة ناعم حرش', val: `${plasterSandM3.toFixed(1)} م³`, sub: 'رمل مغسول خالي من الأملاح' }
         ];
         materials = [
-          { name: 'أسمنت تشطيبات بورتلاندي', qty: `${plasterCementBags} كيس`, note: 'للخلطة والطرطشة' },
-          { name: 'رمل لياسة منخول ومغسول', qty: `${plasterSandM3.toFixed(1)} م³`, note: 'لمنع التشققات' },
-          { name: 'شبوك وزوايا فايبر/معدن', qty: `${Math.ceil(pArea * 0.4)} متر`, note: 'تثبيت الفواصل' },
-          { name: 'بلاط وسيراميك أرضيات', qty: `${Math.ceil(fArea * 1.05)} م²`, note: 'شامل 5% هالك' }
+          { name: 'أسمنت تشطيبات بورتلاندي عادي', qty: `${plasterCementBags} كيس`, note: 'للخلطة والطرطشة المسمارية' },
+          { name: 'رمل لياسة منخول ومغسول', qty: `${plasterSandM3.toFixed(1)} م³`, note: 'لضمان عدم حدوث تنميل أو تشققات' },
+          { name: 'شبوك وزوايا فايبر/معدن للزوايا', qty: `${Math.ceil(pArea * 0.4)} متر`, note: 'تثبيت عند فواصل الخرسانة والمباني' },
+          { name: 'بلاط وسيراميك أرضيات', qty: `${Math.ceil(fArea * 1.05)} م²`, note: 'شامل 5% نسبة قص وهالك' }
         ];
-      } else if (modId === 'formwork') {
-        const area = Number(d.contactArea) || 0, sheetArea = Number(d.plywoodSheetArea) || 2.97, rate = Number(d.formRate) || 45;
+      }
+      else if (modId === 'formwork') {
+        const area = Number(d.contactArea) || 0;
+        const sheetArea = Number(d.plywoodSheetArea) || 2.97;
+        const rate = Number(d.formRate) || 45;
         const sheetsCount = Math.ceil(area / sheetArea);
         estimatedCost = area * rate;
+
         primary = { label: 'إجمالي مسطحات الشدات الخشبية', val: area.toFixed(1), unit: 'متر مربع (م²)' };
         secondaries = [
           { label: 'ألواح خشب بلايوود (Plywood)', val: `${sheetsCount} لوح`, sub: 'مقاس 1.22 × 2.44 م' },
           { label: 'تكلفة مصنعية النجارة', val: `${estimatedCost.toLocaleString()} ر.س`, sub: `${rate} ر.س/م²` },
           { label: 'مرابيع وموسكي خشب داعم', val: `${Math.ceil(area * 1.5)} م.ط`, sub: 'عوارض ودعامات تدعيم' },
-          { label: 'جاكات وقوائم معدنية', val: `${Math.ceil(area * 1.2)} قائم`, sub: 'تثبيت كل 80 سم' }
+          { label: 'جاكات وقوائم معدنية (Props)', val: `${Math.ceil(area * 1.2)} قائم`, sub: 'تثبيت كل 80 سم' }
         ];
         materials = [
-          { name: 'ألواح فيلم فيس بليود 18مم', qty: `${sheetsCount} لوح`, note: 'قابلة لإعادة الاستخدام' },
-          { name: 'مسامير نجارة صلب متنوعة', qty: `${Math.ceil(area * 0.15)} كجم`, note: 'مقاسات مختلفة' },
-          { name: 'زيت تفكيك القوالب', qty: `${Math.ceil(area / 20)} لتر`, note: 'لتسهيل الفك' }
+          { name: 'ألواح فيلم فيس بليود ضد الماء 18مم', qty: `${sheetsCount} لوح`, note: 'قابلة للاستخدام المتكرر 3-4 مرات' },
+          { name: 'مسامير نجارة صلب ومقاسات متنوعة', qty: `${Math.ceil(area * 0.15)} كجم`, note: 'مقاسات 6 و 7 و 10 سم' },
+          { name: 'زيت تفكيك القوالب (Mold Release)', qty: `${Math.ceil(area / 20)} لتر`, note: 'لدهان الخشب وتسهيل الفك' }
         ];
-      } else if (modId === 'boq') {
-        const tax = Number(d.taxRate) || 15, cont = Number(d.contingency) || 5;
-        let fCost = 12 * 2.2 * 1.8 * 0.6 * 260, cCost = 16 * 0.25 * 0.6 * 3.2 * 320, sCost = 280 * 0.22 * 290, eCost = 22 * 18 * 2.2 * 18, bCost = (420 * 12.5) * 2.8;
+      }
+      else if (modId === 'boq') {
+        const tax = Number(d.taxRate) || 15;
+        const cont = Number(d.contingency) || 5;
+
+        let fCost = (moduleDataStore.foundations?.length || 2.2) * (moduleDataStore.foundations?.width || 1.8) * (moduleDataStore.foundations?.depth || 0.6) * (moduleDataStore.foundations?.count || 12) * 260;
+        let cCost = (moduleDataStore.columns?.colCount || 16) * (moduleDataStore.columns?.colB || 0.25) * (moduleDataStore.columns?.colT || 0.6) * (moduleDataStore.columns?.colH || 3.2) * 320;
+        let sCost = (moduleDataStore.slabs?.slabArea || 280) * (moduleDataStore.slabs?.slabThickness || 0.22) * 290;
+        let eCost = (moduleDataStore.earthworks?.excLength || 22) * (moduleDataStore.earthworks?.excWidth || 18) * (moduleDataStore.earthworks?.excDepth || 2.2) * 18;
+        let bCost = ((moduleDataStore.masonry?.wallArea || 420) * 12.5) * 2.8;
+
         const subtotal = fCost + cCost + sCost + eCost + bCost + 35000;
-        const contAmount = subtotal * (cont / 100), taxAmount = (subtotal + contAmount) * (tax / 100);
+        const contAmount = subtotal * (cont / 100);
+        const taxAmount = (subtotal + contAmount) * (tax / 100);
         estimatedCost = subtotal + contAmount + taxAmount;
+
         primary = { label: 'التكلفة الإجمالية التقديرية للمشروع', val: estimatedCost.toLocaleString(undefined, {maximumFractionDigits: 0}), unit: 'ريال سعودي (شامل الضريبة)' };
         secondaries = [
           { label: 'التكلفة المباشرة (Subtotal)', val: `${subtotal.toLocaleString(undefined, {maximumFractionDigits: 0})} ر.س`, sub: 'المواد والمصنعيات' },
           { label: 'مبلغ ضريبة القيمة المضافة', val: `${taxAmount.toLocaleString(undefined, {maximumFractionDigits: 0})} ر.س`, sub: `نسبة ${tax}%` },
-          { label: 'احتياطي الطوارئ', val: `${contAmount.toLocaleString(undefined, {maximumFractionDigits: 0})} ر.س`, sub: `نسبة ${cont}%` },
+          { label: 'احتياطي الطوارئ وتفاوت الأسعار', val: `${contAmount.toLocaleString(undefined, {maximumFractionDigits: 0})} ر.س`, sub: `نسبة ${cont}%` },
           { label: 'نسبة الإنجاز المحسوبة', val: '100%', sub: 'كافة البنود مغطاة' }
         ];
         materials = [
-          { name: 'بند أعمال الحفر والردم', qty: 'مقطوعية', note: `${eCost.toLocaleString(undefined, {maximumFractionDigits: 0})} ر.س` },
-          { name: 'بند الأساسات والقواعد', qty: 'م³ مقاسات', note: `${fCost.toLocaleString(undefined, {maximumFractionDigits: 0})} ر.س` },
-          { name: 'بند الأعمدة والرقاب', qty: 'م³ مقاسات', note: `${cCost.toLocaleString(undefined, {maximumFractionDigits: 0})} ر.س` },
-          { name: 'بند الأسقف والكمرات', qty: 'م³ مقاسات', note: `${sCost.toLocaleString(undefined, {maximumFractionDigits: 0})} ر.س` },
-          { name: 'بند أعمال المباني والبلوك', qty: 'توريد ومصنعية', note: `${bCost.toLocaleString(undefined, {maximumFractionDigits: 0})} ر.س` }
+          { name: 'بند أعمال الحفر والردم والتسوية', qty: 'مقطوعية', note: `${eCost.toLocaleString(undefined, {maximumFractionDigits: 0})} ر.س` },
+          { name: 'بند الأساسات والقواعد الخرسانية', qty: 'م³ مقاسات هندسية', note: `${fCost.toLocaleString(undefined, {maximumFractionDigits: 0})} ر.س` },
+          { name: 'بند خرسانة الأعمدة والرقاب', qty: 'م³ مقاسات هندسية', note: `${cCost.toLocaleString(undefined, {maximumFractionDigits: 0})} ر.س` },
+          { name: 'بند خرسانة الأسقف والكمرات', qty: 'م³ مقاسات هندسية', note: `${sCost.toLocaleString(undefined, {maximumFractionDigits: 0})} ر.س` },
+          { name: 'بند أعمال المباني والبلوك', qty: 'حبات توريد ومصنعية', note: `${bCost.toLocaleString(undefined, {maximumFractionDigits: 0})} ر.س` }
         ];
       }
 
@@ -588,26 +742,27 @@
       saveStore();
       renderModuleForm();
       calculateCurrentModule();
+      showToast('تم تحميل بيانات مشروع فيلا سكنية تجريبية بنجاح 🏗️');
     }
 
-    function setupPWA() {
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./sw.js').catch(() => {});
-        });
-      }
+    function showToast(msg) {
+      const el = document.getElementById('netText');
+      const prev = el.textContent;
+      el.textContent = msg;
+      setTimeout(() => { el.textContent = prev; }, 3500);
     }
 
     window.addEventListener('DOMContentLoaded', () => {
       initStore();
       if (window.location.hash) {
         const hashId = window.location.hash.replace('#', '');
-        if (MODULES.some(m => m.id === hashId)) currentModuleId = hashId;
+        if (MODULES.some(m => m.id === hashId)) {
+          currentModuleId = hashId;
+        }
       }
       renderTabs();
       renderModuleForm();
       calculateCurrentModule();
-      setupPWA();
     });
   </script>
 </body>
